@@ -3,7 +3,7 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string | unique: true|
+| email              | string | unique: true, null:false|
 | encrypted_password | string | null: false |
 | first_name         | string | null: false |
 | last_name               | string | null: false |
@@ -13,15 +13,13 @@
 ### Association
 
 - has_many :items
-- has_many :purchases
 
 ## purchases テーブル
 
 | Column             | Type   | Options     |
 | ------             | ------ | ----------- |
-| buyer              | string | null: false |
-| purchased_items    | string | null: false |
 | user_id            | integer| foreign_key: true |
+| item_id            | integer| foreign_key: true |
 ### Association
 
 - belong_to :user
@@ -34,16 +32,14 @@
 | ------ | ---------- | ------------------------------ |
 | postal_code         | string | null: false |
 | prefectures         | string | null: false |
-| cities              | string | null: false |
+| city                | string | null: false |
 | phone_number        | string | null: false |
-| item_id             | integer| foreign_key: true |
 | house_number        | string | null: false |
 | building_number     | string | null: false |
+| purchase_id         | integer| foreign_key: true|
 ### Association
 
-- has_one :users
-- has_one :purchase
-- belongs_to :item
+- belongs_to :purchase
 
 ## items テーブル
 
@@ -51,16 +47,14 @@
 | ------------------ | ------ | ----------- |
 | items_name         | string | null: false |
 | items_description  | text   | null: false |
-| items_status       | string | null: false |
+| items_status       | integer | null: false |
 | category_id        | integer| null: false |
-| shipping_charges   | string | null: false |
-| shipping_area      | string | null: false |
+| shipping_charges   | integer | null: false |
+| shipping_area      | integer | null: false |
 | price              | string | null: false |
-| days_to_ship       | string | null: false |
-| seller             | string | null: false |
+| days_to_ship       | integer | null: false |
 | user_id            | integer| foreign_key: true|
 ### Association
 
 - belongs_to :user
-- has_one :purchases
 - has_one :address
