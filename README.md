@@ -3,17 +3,17 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string | null: false |
-| password           | string | null: false |
+| email              | string | unique: true|
+| encrypted_password | string | null: false |
 | first_name         | string | null: false |
-| name               | string | null: false |
-| birthday           | string | null: false |
-
+| last_name               | string | null: false |
+| birthday           | date   | null: false |
+| first_name_furigana         | string | null: false |
+| last_name_furigana               | string | null: false |
 ### Association
 
 - has_many :items
 - has_many :purchases
-- has_one :address
 
 ## purchases テーブル
 
@@ -24,7 +24,7 @@
 | user_id            | integer| foreign_key: true |
 ### Association
 
-- belongs_to :users
+- belong_to :user
 - has_one :items
 - has_one :address
 
@@ -34,25 +34,25 @@
 | ------ | ---------- | ------------------------------ |
 | postal_code         | string | null: false |
 | prefectures         | string | null: false |
-| city                | string | null: false |
+| cities              | string | null: false |
 | phone_number        | string | null: false |
 | item_id             | integer| foreign_key: true |
-
+| house_number        | string | null: false |
+| building_number     | string | null: false |
 ### Association
 
 - has_one :users
 - has_one :purchase
-- belongs_to :items
+- belongs_to :item
 
 ## items テーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| image              | string | null: false |
 | items_name         | string | null: false |
-| items_description  | string | null: false |
+| items_description  | text   | null: false |
 | items_status       | string | null: false |
-| category           | string | null: false |
+| category_id        | integer| null: false |
 | shipping_charges   | string | null: false |
 | shipping_area      | string | null: false |
 | price              | string | null: false |
@@ -61,6 +61,6 @@
 | user_id            | integer| foreign_key: true|
 ### Association
 
-- belongs_to :users 
+- belongs_to :user
 - has_one :purchases
 - has_one :address
