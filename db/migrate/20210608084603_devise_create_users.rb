@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :last_name_furigana, null: false
       t.string :email,              null: false, unique: true
       t.string :encrypted_password, null: false, default: ""
-      t.data   :birthday, null: false
+      t.date   :birthday, null: false
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
