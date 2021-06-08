@@ -22,16 +22,16 @@
 | item_id            | integer| foreign_key: true |
 ### Association
 
-- belong_to :user
-- has_one :items
+- belongs_to :user
+- belongs_to :item
 - has_one :address
 
-## address テーブル
+## addresses テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | postal_code         | string | null: false |
-| prefectures         | string | null: false |
+| shipping_area_id    | integer | null: false |
 | city                | string | null: false |
 | phone_number        | string | null: false |
 | house_number        | string | null: false |
@@ -47,14 +47,14 @@
 | ------------------ | ------ | ----------- |
 | items_name         | string | null: false |
 | items_description  | text   | null: false |
-| items_status       | integer | null: false |
+| items_status_id    | integer | null: false |
 | category_id        | integer| null: false |
-| shipping_charges   | integer | null: false |
-| shipping_area      | integer | null: false |
-| price              | string | null: false |
-| days_to_ship       | integer | null: false |
+| shipping_charges_id| integer | null: false |
+| shipping_area_id   | integer | null: false |
+| price              | integer | null: false |
+| days_to_ship_id    | integer | null: false |
 | user_id            | integer| foreign_key: true|
 ### Association
 
 - belongs_to :user
-- has_one :address
+- has_one :purchase
