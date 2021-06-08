@@ -13,6 +13,7 @@
 ### Association
 
 - has_many :items
+- has_many :purchases
 
 ## purchases テーブル
 
@@ -35,7 +36,7 @@
 | city                | string | null: false |
 | phone_number        | string | null: false |
 | house_number        | string | null: false |
-| building_number     | string | null: false |
+| building_number     | string |  |
 | purchase_id         | integer| foreign_key: true|
 ### Association
 
@@ -45,8 +46,8 @@
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| items_name         | string | null: false |
-| items_description  | text   | null: false |
+| name         | string | null: false |
+| description  | text   | null: false |
 | items_status_id    | integer | null: false |
 | category_id        | integer| null: false |
 | shipping_charges_id| integer | null: false |
