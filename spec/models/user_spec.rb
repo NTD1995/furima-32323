@@ -35,26 +35,26 @@ RSpec.describe User, type: :model do
     it 'first_nameが空では登録できないこと' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("first_name can't be blank")
+      expect(@user.errors.full_messages).to include("First name can't be blank")
     end
     it 'last_nameが空では登録できないこと' do
       @user.last_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("last_name can't be blank")
+      expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
     it 'first_name_furiganaが空では登録できないこと' do
       @user.first_name_furigana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("first_name_furigana can't be blank")
+      expect(@user.errors.full_messages).to include("First name furigana can't be blank")
     end
     it 'last_name_furiganaが空では登録できないこと' do
       @user.last_name_furigana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("last_name_furigana can't be blank")
+      expect(@user.errors.full_messages).to include("Last name furigana can't be blank")
     end
     it 'passwordが6文字以上であれば登録できること' do
-      @user.password = '123456'
-      @user.password_confirmation = '123456'
+      @user.password = '12345a'
+      @user.password_confirmation = '12345a'
       expect(@user).to be_valid
     end
 
@@ -80,27 +80,27 @@ RSpec.describe User, type: :model do
     it 'first_nameに数字が含まれている場合では登録できないこと' do
       @user.first_name = '田中3'
       @user.valid?
-      expect(@user.errors.full_messages).to include("first_name can't be blank")
+      expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
     end
     it 'last_nameに数字が含まれている場合では登録できないこと' do
       @user.last_name = '太郎3'
       @user.valid?
-      expect(@user.errors.full_messages).to include("last_name can't be blank")
+      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
     end
     it 'first_name_furiganaに数字が含まれている場合では登録できないこと' do
       @user.first_name_furigana = 'タナカ3'
       @user.valid?
-      expect(@user.errors.full_messages).to include("first_name_furigana can't be blank")
+      expect(@user.errors.full_messages).to include("First name furigana 全角文字を使用してください")
     end
     it 'last_name_furiganaに数字が含まれている場合では登録できないこと' do
       @user.last_name_furigana = 'タロウ3'
       @user.valid?
-      expect(@user.errors.full_messages).to include("last_name_furigana can't be blank")
+      expect(@user.errors.full_messages).to include("Last name furigana 全角文字を使用してください")
     end
     it 'passwordが英字のみの場合では登録できないこと' do
       @user.password = 'abcdef'
       @user.valid?
-      expect(@user.errors.full_messages).to include("password can't be blank")
+      expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
     end
   end
 end
