@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できること' do
-
+      expect(@user).to be_valid
     end
 
     it 'nicknameが空では登録できないこと' do
@@ -76,6 +76,31 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user, email: @user.email)
       another_user.valid?
       expect(another_user.errors.full_messages).to include('Email has already been taken')
+    end
+    it 'first_nameに数字が含まれている場合では登録できないこと' do
+      @user.first_name = '田中3'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("first_name can't be blank")
+    end
+    it 'last_nameに数字が含まれている場合では登録できないこと' do
+      @user.last_name = '太郎3'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("last_name can't be blank")
+    end
+    it 'first_name_furiganaに数字が含まれている場合では登録できないこと' do
+      @user.first_name_furigana = 'タナカ3'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("first_name_furigana can't be blank")
+    end
+    it 'last_name_furiganaに数字が含まれている場合では登録できないこと' do
+      @user.last_name_furigana = 'タロウ3'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("last_name_furigana can't be blank")
+    end
+    it 'passwordが英字のみの場合では登録できないこと' do
+      @user.password = 'abcdef'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("password can't be blank")
     end
   end
 end
