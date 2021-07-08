@@ -7,7 +7,6 @@ class Item < ApplicationRecord
  belongs_to :category
  belongs_to :days_to_ship
  belongs_to :items_status
- belongs_to :shipping_area
  belongs_to :shipping_charges
 
  validates :name, :description, :image, presence: true
