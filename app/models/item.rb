@@ -10,7 +10,7 @@ class Item < ApplicationRecord
  belongs_to :shipping_area
  belongs_to :shipping_charges
 
- validates :name, :description, :user_id, :image, presence: true
+ validates :name, :description, :image, presence: true
 
  validates :category_id, :days_to_ship_id, :items_status_id, :shipping_area_id, :shipping_charges_id, numericality: { other_than: 1 } 
 
