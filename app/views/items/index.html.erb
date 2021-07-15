@@ -129,7 +129,7 @@
     <ul class='item-lists'>
       <li class='list'>
       <% @items.each do |item| %>
-        <%= link_to items_path do %>
+        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
