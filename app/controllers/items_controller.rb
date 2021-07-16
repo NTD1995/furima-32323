@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user! ,except: [:index, :show]
+  before_action :set_item, only: [:edit, :show, :update]
   def index
     @items = Item.all.order(id: "DESC")
   end
@@ -18,6 +19,20 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    @item.update(item_params)
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :edit
+    end
+  end
+  def set_item
     @item = Item.find(params[:id])
   end
 end
