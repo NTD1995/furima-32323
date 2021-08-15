@@ -53,5 +53,13 @@ RSpec.describe PurchaseAddress, type: :model do
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
      end
+     it "priceとtokenがあれば保存ができること" do
+      expect(@order).to be_valid
+    end
+    it "tokenが空では登録できないこと" do
+      @order.token = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end

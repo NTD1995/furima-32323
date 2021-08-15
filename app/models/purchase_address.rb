@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :phone_number, :house_number, :building_number, :city, :user_id, :item_id, :shipping_area_id, :purchase_id
+  attr_accessor :postal_code, :phone_number, :house_number, :building_number, :city, :user_id, :item_id, :shipping_area_id, :purchase_id, :token
 
   validates :postal_code,  presence: true
   validates :phone_number, presence: true
@@ -10,6 +10,7 @@ class PurchaseAddress
   validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
   validates :phone_number, length: { maximum: 11 }
   validates :phone_number, format: { with: /\A\d{11}\z/, message: "is not invalid. Include hyphen(-)" }
+  validates :token, presence: true
 
   def save 
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
