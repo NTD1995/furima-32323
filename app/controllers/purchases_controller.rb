@@ -1,12 +1,16 @@
 class PurchasesController < ApplicationController
   def index
    @purchase_address = PurchaseAddress.new
+   @item = Item.find(params[:item_id])
+   @item.price
   end
 
 
   def create
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
+      @item = Item.find(params[:item_id])
+      @item.price 
       pay_item
       @purchase_address.save
       redirect_to action: :index
@@ -24,8 +28,8 @@ class PurchasesController < ApplicationController
     def pay_item
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: order_params[:price],  # 商品の値段
-        card: order_params[:token],    # カードトークン
+        amount: @item.price,  # 商品の値段
+        card: purchase_params[:token],    # カードトークン
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
     end
