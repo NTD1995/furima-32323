@@ -1,4 +1,7 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user! 
+  before_action :move_index, only: [:index, :create]
+ 
   def index
    @purchase_address = PurchaseAddress.new
    @item = Item.find(params[:item_id])
@@ -13,9 +16,16 @@ class PurchasesController < ApplicationController
       @item.price 
       pay_item
       @purchase_address.save
-      redirect_to action: :index
+      redirect_to items_path
     else
       render action: :index
+    end
+  end
+
+  def move_index
+    @item = Item.find(params[:item_id])
+    if @item.purchase
+      redirect_to items_path
     end
   end
   

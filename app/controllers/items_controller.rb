@@ -44,6 +44,7 @@ class ItemsController < ApplicationController
       render :index 
     end
   end
+
 end
 
 
