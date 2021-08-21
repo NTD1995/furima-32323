@@ -13,7 +13,6 @@ class PurchasesController < ApplicationController
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       @item = Item.find(params[:item_id])
-      @item.price 
       pay_item
       @purchase_address.save
       redirect_to items_path
@@ -24,7 +23,7 @@ class PurchasesController < ApplicationController
 
   def move_index
     @item = Item.find(params[:item_id])
-    if @item.purchase
+      if current_user.id == @item.user_id || @item.purchase.nil 
       redirect_to items_path
     end
   end
