@@ -5,7 +5,9 @@ FactoryBot.define do
     house_number{'青山1-1-1'}
     building_number{'柳ビル103'}
     city{'横浜市緑区'}
-    shipping_area_id{ 2 }
+    shipping_area_id{2}
     token {"tok_abcdefghijk00000000000000000"}
+    item_id{2}  
+    user_id{2}  
   end
 end

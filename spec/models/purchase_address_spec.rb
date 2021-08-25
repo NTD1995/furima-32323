@@ -4,6 +4,9 @@ RSpec.describe PurchaseAddress, type: :model do
   describe '購入情報の登録' do
     before do
       @purchase_address= FactoryBot.build(:purchase_address)
+      @user = FactoryBot.build(:item_id: @item.id)
+      @item = FactoryBot.build(:user_id: @user.id)
+      sleep(1)
     end
 
       context '購入情報が登録できる場合' do
