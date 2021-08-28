@@ -11,10 +11,9 @@ class PurchasesController < ApplicationController
   def create
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
-      @item = Item.find(params[:item_id])
       pay_item
       @purchase_address.save
-      redirect_to items_path
+      redirect_to root_path
     else
       render action: :index
     end
@@ -22,7 +21,7 @@ class PurchasesController < ApplicationController
 
   def move_index
     @item = Item.find(params[:item_id])
-      if current_user.id == @item.user_id || @item.purchase.nil 
+      if current_user.id == @item.user_id || @item.purchase.present?
       redirect_to items_path
     end
   end

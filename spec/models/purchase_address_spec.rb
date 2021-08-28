@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseAddress, type: :model do
-  describe '購入情報の登録' do
+
     before do
       @user = FactoryBot.create(:user) 
-      @item = FactoryBot.create(:item)
-      @purchase_address = FactoryBot.build(: purchase_address, user_id: @user.id , item_id: @item.id)
+      @item = FactoryBot.create(:item, user_id: @user.id)
+      @purchase_address = FactoryBot.build(:purchase_address, user_id: @user.id , item_id: @item.id)
      end
      
       sleep(1)
-    end
 
+    describe '購入情報の登録' do
       context '購入情報が登録できる場合' do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@purchase_address).to be_valid
@@ -22,8 +22,9 @@ RSpec.describe PurchaseAddress, type: :model do
     it "priceとtokenがあれば保存ができること" do
       expect(@purchase_address).to be_valid
     end
+  end
 
-    context '購入情報が登録できない場合'
+    context '購入情報が登録できない場合' do
     it 'postal_codeが空だと保存できないこと' do
       @purchase_address.postal_code = ''
       @purchase_address.valid?
@@ -72,10 +73,13 @@ RSpec.describe PurchaseAddress, type: :model do
     it "user_idが空では登録できないこと" do
       @purchase_address.user_id = ''
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("User id can't be blank")
+      expect(@purchase_address.errors.full_messages).to include("User can't be blank")
+    end
     it "item_idが空では登録できないこと" do
       @purchase_address.item_id = ''
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Item id can't be blank")
+      expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
+    end
   end
+end
 end
