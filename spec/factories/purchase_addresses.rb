@@ -7,7 +7,5 @@ FactoryBot.define do
     city{'横浜市緑区'}
     shipping_area_id{2}
     token {"tok_abcdefghijk00000000000000000"}
-    item_id{2}  
-    user_id{2}  
   end
 end
