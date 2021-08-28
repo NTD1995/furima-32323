@@ -19,9 +19,6 @@ RSpec.describe PurchaseAddress, type: :model do
       @purchase_address.building_number = ''
       expect(@purchase_address).to be_valid
     end
-    it "priceとtokenがあれば保存ができること" do
-      expect(@purchase_address).to be_valid
-    end
   end
 
     context '購入情報が登録できない場合' do
